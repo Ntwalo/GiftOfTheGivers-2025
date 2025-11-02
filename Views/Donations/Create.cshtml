@@ -1,0 +1,12 @@
+﻿@model GiftOfTheGivers.Models.Donation
+@{
+    Layout = "_Layout";
+}
+<h2>Create Donation</h2>
+<form method="post">
+    <div class="mb-3"><label>Title</label><input name="Title" class="form-control" /></div>
+    <div class="mb-3"><label>Description</label><input name="Description" class="form-control" /></div>
+    <div class="mb-3"><label>Category</label><input name="Category" class="form-control" /></div>
+    <div class="mb-3"><label>Quantity</label><input name="Quantity" type="number" class="form-control" /></div>
+    <button class="btn btn-primary">Create</button>
+</form>

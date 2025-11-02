@@ -1,0 +1,27 @@
+﻿@model IEnumerable<GiftOfTheGivers.Models.Notification>
+@{
+    Layout = "_Layout";
+}
+<h2>Notifications</h2>
+<table class="table">
+    <thead><tr><th>Message</th><th>When</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var n in Model)
+        {
+            <tr>
+                <td>@n.Message</td>
+                <td>@n.CreatedAt.ToLocalTime().ToString("g")</td>
+                <td>@(n.IsRead ? "Read" : "Unread")</td>
+                <td>
+                    @if (!n.IsRead)
+                    {
+                        <form method="post" action="/Notifications/MarkRead">
+                            <input type="hidden" name="id" value="@n.Id" />
+                            <button class="btn btn-sm btn-primary">Mark Read</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

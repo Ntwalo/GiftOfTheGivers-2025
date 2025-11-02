@@ -1,0 +1,16 @@
+﻿@{
+    Layout = "_Layout";
+}
+<h2>Admin Dashboard</h2>
+<p>Overview of user's data</p>
+
+<h3>Users</h3>
+<table class="table">
+    <thead><tr><th>Email</th><th>Role</th></tr></thead>
+    <tbody>
+        @foreach (var u in ((dynamic)Model).Users)
+        {
+            <tr><td>@u.Email</td><td>@u.Role</td></tr>
+        }
+    </tbody>
+</table>

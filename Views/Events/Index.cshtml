@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GiftOfTheGivers.Models.EventModel>
+@{
+    Layout = "_Layout";
+}
+<h2>Events</h2>
+@if (User.IsInRole("Admin") || User.IsInRole("Volunteer"))
+{
+    <p><a class="btn btn-primary" href="/Events/Create">Create Event</a></p>
+}
+<table class="table">
+    <thead><tr><th>Name</th><th>Date</th><th>Location</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var e in Model)
+        {
+            <tr>
+                <td>@e.Name</td>
+                <td>@e.Date.ToLocalTime().ToString("g")</td>
+                <td>@e.Location</td>
+                <td>
+                    <a class="btn btn-sm btn-link" href="/Events/Details/@e.Id">Details</a>
+                    @if (User.IsInRole("Admin") || User.IsInRole("Volunteer"))
+                    {
+                        <a class="btn btn-sm btn-link" href="/Events/Edit/@e.Id">Edit</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

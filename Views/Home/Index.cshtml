@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "_Layout";
+    var donations = ViewBag.RecentDonations as List<GiftOfTheGivers.Models.Donation>;
+    var events = ViewBag.UpcomingEvents as List<GiftOfTheGivers.Models.EventModel>;
+}
+<h1>Welcome to Gift of the Givers</h1>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Recent Donations</h3>
+        <ul class="list-group">
+            @foreach (var d in donations ?? Enumerable.Empty<GiftOfTheGivers.Models.Donation>())
+            {
+                <li class="list-group-item">
+                    <strong>@d.Title</strong> - @d.Category (@d.Quantity) <a class="btn btn-sm btn-link" href="/Donations/Details/@d.Id">Details</a>
+                </li>
+            }
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <h3>Upcoming Events</h3>
+        <ul class="list-group">
+            @foreach (var e in events ?? Enumerable.Empty<GiftOfTheGivers.Models.EventModel>())
+            {
+                <li class="list-group-item">
+                    <strong>@e.Name</strong> - @e.Date.ToLocalTime().ToString("g") <a class="btn btn-sm btn-link" href="/Events/Details/@e.Id">Details</a>
+                </li>
+            }
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GiftOfTheGivers.Models.RequestModel>
+@{
+    Layout = "_Layout";
+}
+<h2>Requests</h2>
+<table class="table">
+    <thead><tr><th>Id</th><th>Donation</th><th>Requester</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var r in Model)
+        {
+            var donation = ((GiftOfTheGivers.Data.InMemoryStore)ViewContext.HttpContext.RequestServices.GetService(typeof(GiftOfTheGivers.Data.InMemoryStore)))?
+            .Donations.FirstOrDefault(d => d.Id == r.DonationId);
+            <tr>
+                <td>@r.Id</td>
+                <td>@(donation?.Title ?? r.DonationId.ToString())</td>
+                <td>@r.RequesterId</td>
+                <td>@r.Status</td>
+                <td>
+                    <a class="btn btn-sm btn-link" href="/Requests/Details/@r.Id">Details</a>
+                    @if (User.IsInRole("Admin") && r.Status == "Pending")
+                    {
+                        <a class="btn btn-sm btn-success" href="/Requests/Approve/@r.Id">Approve</a>
+                        <a class="btn btn-sm btn-danger" href="/Requests/Reject/@r.Id">Reject</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

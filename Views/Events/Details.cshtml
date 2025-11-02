@@ -1,0 +1,8 @@
+﻿@model GiftOfTheGivers.Models.EventModel
+@{
+    Layout = "_Layout";
+}
+<h2>Event Details</h2>
+<p><strong>@Model.Name</strong></p>
+<p>@Model.Description</p>
+<p>@Model.Date.ToLocalTime().ToString("g") - @Model.Location</p>

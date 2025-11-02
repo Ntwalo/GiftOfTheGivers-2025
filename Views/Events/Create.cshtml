@@ -1,0 +1,12 @@
+﻿@model GiftOfTheGivers.Models.EventModel
+@{
+    Layout = "_Layout";
+}
+<h2>Create Event</h2>
+<form method="post">
+    <div class="mb-3"><label>Name</label><input name="Name" class="form-control" /></div>
+    <div class="mb-3"><label>Description</label><input name="Description" class="form-control" /></div>
+    <div class="mb-3"><label>Date</label><input name="Date" type="datetime-local" class="form-control" /></div>
+    <div class="mb-3"><label>Location</label><input name="Location" class="form-control" /></div>
+    <button class="btn btn-primary">Create</button>
+</form>

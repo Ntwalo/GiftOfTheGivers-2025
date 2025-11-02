@@ -1,0 +1,11 @@
+﻿@model GiftOfTheGivers.Models.RequestModel
+@{
+    Layout = "_Layout";
+    var donation = ViewBag.Donation as GiftOfTheGivers.Models.Donation;
+}
+<h2>Request Donation: @donation?.Title</h2>
+<form method="post">
+    <input type="hidden" name="DonationId" value="@Model.DonationId" />
+    <div class="mb-3"><label>Message</label><textarea name="Message" class="form-control"></textarea></div>
+    <button class="btn btn-primary">Submit Request</button>
+</form>

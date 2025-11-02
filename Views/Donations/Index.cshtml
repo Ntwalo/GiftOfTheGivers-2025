@@ -1,0 +1,28 @@
+﻿@model IEnumerable<GiftOfTheGivers.Models.Donation>
+@{
+    Layout = "_Layout";
+}
+<h2>Donations</h2>
+<p><a href="/Donations/Create" class="btn btn-primary">Create Donation</a></p>
+<table class="table">
+    <thead><tr><th>Title</th><th>Category</th><th>Qty</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+        @foreach (var d in Model)
+        {
+            <tr>
+                <td>@d.Title</td>
+                <td>@d.Category</td>
+                <td>@d.Quantity</td>
+                <td>@d.Status</td>
+                <td>
+                    <a class="btn btn-sm btn-link" href="/Donations/Details/@d.Id">Details</a>
+                    <a class="btn btn-sm btn-link" href="/Donations/Edit/@d.Id">Edit</a>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a class="btn btn-sm btn-danger" href="/Donations/Delete/@d.Id">Delete</a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
